@@ -1,0 +1,13 @@
+.avatar-img{
+border-radius: 50%;
+}
+
+.avatar-container span{
+    margin: 20px 0 0 10px; 
+    float: right;
+    transition: 0.23s;
+    font-size: 15px;
+}
+.avatar-container span:hover{
+    font-weight: 600;
+}
