@@ -38,7 +38,7 @@ function Form() {
   return (
     <>
       <form className="form-inside-input" onSubmit={userSave} noValidate>
-        <div className="mb-3 ml-3 bg-primary bg-gradient d-flex flex-column justify-content-center align-items-center">
+        <div className="mb-3 ml-3 bg-info bg-gradient d-flex flex-column justify-content-center align-items-center">
           <div className=" d-flex justify-content-evenly w-100">
             <div>
               <label htmlFor="Nickname" className="form-label">
