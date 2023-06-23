@@ -1,39 +1,24 @@
-import { useState } from "react";
+import { useContext } from "react";
 import "../styles/Form.css";
+import { FormContext } from "./FormContext";
 
-function Form() {
-  const [formData, setFormData] = useState({
-    nickname: "",
-    idade: "",
-    email: "",
-    senha: "",
-  });
+function Form(){
+const { FormData }= useContext(FormContext)
 
-  function userData(e) {
-    const { key, value } = e.target;
-    setFormData((data) => ({ ...data, [key]: value }));
-  }
+const userData = (e) => {
+  e.preventDefault();
+  const { value } = e.target;
 
-  function userSave(e) {
-    e.preventDefault();
+  const newData = {...formData, value }; /*é o mesmo que if (id === "password")return setFormData({...formData, password: value})*/
+  setFormData(newData);
+  console.log(newData);
+};
 
-    if (
-      formData.nickname &&
-      formData.idade &&
-      formData.email &&
-      formData.senha
-    ) {
-      console.log(formData); 
-      setFormData({
-        nickname: "",
-        idade: "",
-        email: "",
-        senha: "",
-      });
-    } else {
-      alert("Por favor, preencha todos os campos.");
-    }
-  }
+const userSave = (e) => {
+  e.preventDefault();
+  isFormValid()? alert(`${formData.email} usuario logado com sucesso`) : alert('Verifique os campos')
+};
+
 
   return (
     <>
@@ -96,7 +81,7 @@ function Form() {
               />
             </div>
           </div>
-          <button type="submit" className="btn btn-dark btn-form">
+          <button  type="submit" className="btn btn-dark btn-form">
             Enviar
           </button>
         </div>
