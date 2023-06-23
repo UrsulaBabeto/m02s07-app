@@ -7,11 +7,6 @@ function CardPerson() {
   const [users, setUsers] = useState([]);
   const [counter, setCounter] = useState(0);
 
-  useEffect(() => {
-    const data = JSON.parse(localStorage.getItem('users'));
-    setUsers()
-  }, [users])
-
   const render = (item) => {
     return (
       <li>
