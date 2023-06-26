@@ -1,33 +1,48 @@
-import { useContext } from "react";
+import { useState } from "react";
 import "../styles/Form.css";
-import { FormContext } from "./FormContext";
 
-function Form(){
-const { FormData }= useContext(FormContext)
+function Form() {
+  const [formData, setFormData] = useState({
+    nickname: "",
+    idade: "",
+    email: "",
+    senha: "",
+  });
 
-const userData = (e) => {
-  e.preventDefault();
-  const { value } = e.target;
+  const userData = (e) => {
+    e.preventDefault();
+    const { value,id } = e.target;
+    
+    const newData = {
+      ...formData,
+     [id]: value,    }; /*é o mesmo que if (id === "password")return setFormData({...formData, password: value})*/
+    setFormData(newData);
+    console.log(newData);
+  };
 
-  const newData = {...formData, value }; /*é o mesmo que if (id === "password")return setFormData({...formData, password: value})*/
-  setFormData(newData);
-  console.log(newData);
-};
-
-const userSave = (e) => {
-  e.preventDefault();
-  isFormValid()? alert(`${formData.email} usuario logado com sucesso`) : alert('Verifique os campos')
-};
-
+  const userSave = (e) => {
+    e.preventDefault();
+    return (
+      <div className="card bg-light">
+        <div className="card-header text-center">Dados do Usuário</div>
+        <div className="card-body">
+          <p className="card-title">{e.nickname}</p>
+          <p className="card-text">Idade: {e.idade}</p>
+          <p className="card-text">Email: {e.email}</p>
+        </div>
+      </div>
+    );
+   }
+ 
 
   return (
     <>
-      <form className="form-inside-input" onSubmit={userSave} noValidate>
+      <form className="form-inside-input" onSubmit={userSave}>
         <div className="mb-3 ml-3 bg-info bg-gradient d-flex flex-column justify-content-center align-items-center">
           <div className=" d-flex justify-content-evenly w-100">
             <div>
               <label htmlFor="Nickname" className="form-label">
-                Nickname
+                Nome
               </label>
               <input
                 type="text"
@@ -69,7 +84,7 @@ const userSave = (e) => {
             </div>
             <div>
               <label htmlFor="Password" className="form-label ">
-                Password
+                Senha
               </label>
               <input
                 type="password"
@@ -81,7 +96,7 @@ const userSave = (e) => {
               />
             </div>
           </div>
-          <button  type="submit" className="btn btn-dark btn-form">
+          <button type="submit" className="btn btn-dark btn-form">
             Enviar
           </button>
         </div>

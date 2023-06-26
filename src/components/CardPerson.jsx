@@ -1,25 +1,25 @@
 import { useState } from "react";
 import "../styles/CardPerson.css";
 
-import Form from "./Form";
 
-function CardPerson() {
-  const [users, setUsers] = useState([]);
+function CardPerson({ user }) {
   const [counter, setCounter] = useState(0);
 
-  const render = (item) => {
-    return (
-      <li>
-        <Form usuario={item}/>
-      </li>
-    );
-  };
-
   return (
-    <div className="card bg-light">
-      <div className="card-header font-weight-bold">Dados</div>
-      <ul className="list-group list-group-flush">{render()}</ul>
-      <button className="button-card">Editar</button>
+    <div className=" m-2 card col-6 bg-info">
+      <h4 className="p-3 text-center font-weight-bold">Dados do Usuário</h4>
+     
+        <li className="card col bg-light ">
+          <div className="card-body" key={user.nickname}>
+            <p className="card-text">Nome: {user.nickname}</p>
+            <p className="card-text">Idade: {user.age}</p>
+            <p className="card-text">Email: {user.email}</p>
+            <p className="card-text">Senha: {user.senha}</p>
+          </div>
+          </li>
+     
+   
+      <button className="edit-card">Editar</button>
       <button
         type="button"
         className="button-card"
